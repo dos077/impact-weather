@@ -10,8 +10,8 @@
           :serious="serious"
           :metric="metric"
           :isDay="!isDay"
-          v-on:toggleSerious="serious = !serious"
-          v-on:toggleMetric="metric = !metric"
+          v-on:toggleSerious="toggleSerious"
+          v-on:toggleMetric="toggleMetric"
           v-on:searchQuery="weather"
         ></search-bar>
       </v-slide-y-transition>
@@ -66,6 +66,9 @@ import CurrentForecast from './components/Current.vue';
 import FutureForecast from './components/Future.vue';
 import getWeather from './apiHooks/getWeather';
 import gifFind from './apiHooks/gifFind';
+import localPrefs from './helper/localPrefs';
+
+const prefs = localPrefs();
 
 export default {
   name: 'App',
@@ -111,6 +114,7 @@ export default {
         const forecasts = await getWeather(location);
         this.current = forecasts.current;
         this.future = forecasts.forecast;
+        prefs.save({ location });
       } catch (err) {
         this.error.push(err.message);
       }
@@ -132,12 +136,27 @@ export default {
       const adjTime = new Date(utc.getTime() + (this.future.timezone * 1000));
       return adjTime.getUTCHours();
     },
+    toggleMetric() {
+      this.metric = !this.metric;
+      prefs.save({ metric: this.metric });
+    },
+    toggleSerious() {
+      this.serious = !this.serious;
+      prefs.save({ serious: this.serious });
+    },
+  },
+  mounted() {
+    const presets = prefs.load();
+    this.serious = presets.serious;
+    this.metric = presets.metric;
+    if (presets.location !== null) this.weather(presets.location);
   },
 };
 </script>
 
 <style lang="scss">
   @import './sass/mixins';
+  @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
 
   .header {
     position: relative;
@@ -159,7 +178,7 @@ export default {
   }
   .body {
     font-size: 20px;
-    font-family: Impact, Charcoal, sans-serif;
+    font-family: Impact, 'Anton', sans-serif;
   }
   .day {
     background-color: #dbd6d2;
