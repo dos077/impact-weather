@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const serverUrl = process.env.GIFAPI || 'http://localhost:3000/api/gif';
+const serverUrl = 'https://my-api-server.dos077.now.sh/api/gif';
 
 const gifFind = async (term) => {
   if (!term) return { error: 'no search term' };

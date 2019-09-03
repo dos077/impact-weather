@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 dotenv.config();
 
-const serverUrl = process.env.WEATHERAPI || 'http://localhost:3000/api/weather';
+const serverUrl = 'https://my-api-server.dos077.now.sh/api/weather';
 
 const getWeather = async (location) => {
   if (!location) return { error: 'no search location' };
