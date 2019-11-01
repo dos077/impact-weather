@@ -44,6 +44,7 @@
         :loading="loading"
         :weather="current"
         :metric="metric"
+        :serious="serious"
         :gif="gif"
         :isDay="isDay"
       >

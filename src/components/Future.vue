@@ -1,23 +1,25 @@
 <template>
   <section>
-    <div
+    <v-slide-y-transition
       v-for="period in periods"
-      :key="period.time"
-      class="period"
-      :class="dayNight(period.time, weather.timezone)"
-    >
-      <span class="name">
-        {{ showTimePeriod(period.time, weather.timezone, serious) }}
-      </span>
-      <div class="hi-lo">
-        <span class="hot">{{ showTemp(period.high, metric) }}</span>
-        <span class="cold">{{ showTemp(period.low, metric) }}</span>
+      :key="period.time">
+      <div
+        class="period"
+        :class="dayNight(period.time, weather.timezone)"
+      >
+        <span class="name">
+          {{ showTimePeriod(period.time, weather.timezone, serious) }}
+        </span>
+        <div class="hi-lo">
+          <span class="hot">{{ showTemp(period.high, metric) }}</span>
+          <span class="cold">{{ showTemp(period.low, metric) }}</span>
+        </div>
+        <span class="condition">{{ showCondition(period.desc) }}</span>
+        <span v-if="period.rain > 0 || period.snow > 0" class="rain">
+          {{ showRain(period.rain, period.snow, metric) }}
+        </span>
       </div>
-      <span class="condition">{{ showCondition(period.desc) }}</span>
-      <span v-if="period.rain > 0 || period.snow > 0" class="rain">
-        {{ showRain(period.rain, period.snow, metric) }}
-      </span>
-    </div>
+    </v-slide-y-transition>
   </section>
 </template>
 
@@ -30,9 +32,9 @@ export default {
   computed: {
     periods() {
       if (!this.weather) return [];
-      if (this.serious) return this.weather.periods.slice(0, 12);
+      if (this.serious) return this.weather.periods.slice(0, 15);
       const arr = [];
-      for (let i = 0; i < 6; i += 2) {
+      for (let i = 0; i < 10; i += 2) {
         const p1 = this.weather.periods[i];
         const p2 = this.weather.periods[i + 1];
         const period = {
@@ -42,8 +44,8 @@ export default {
           high: (p1.high > p2.high) ? p1.high : p2.high,
           low: (p1.low < p2.low) ? p1.low : p2.low,
           hum: (p1.hum + p2.hum) / 2,
-          rain: p1.rain + p2.rain,
-          snow: p1.snow + p2.snow,
+          rain: (p1.rain ? p1.rain : 0) + (p2.rain ? p2.rain : 0),
+          snow: (p1.snow ? p1.snow : 0) + (p2.snow ? p2.snow : 0),
           wind: (p1.wind > p2.wind) ? p1.wind : p2.wind,
           windDeg: (p1.wind > p2.wind) ? p1.windDeg : p2.windDeg,
         };

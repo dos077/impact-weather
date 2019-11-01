@@ -10,7 +10,8 @@
         outlined
         :color="btnColor"
         v-on:click="$emit('searchOn')"
-        style="height: 48px; width: 48px; border: 2px solid; margin-right: 8px;"
+        style="height: 48px; width: 48px; border: 2px solid;
+        margin-right: 8px; background-color: rgba(0, 0, 0, 0);"
         :class="{ 'day': isDay, 'night': !isDay }"
       >
         <i class="material-icons">search</i>

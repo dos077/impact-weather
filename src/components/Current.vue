@@ -30,7 +30,7 @@
     </v-slide-y-transition>
     <v-slide-y-transition>
       <v-img
-        v-if="weather"
+        v-if="weather && !serious"
         width=100%
         height=340
         :src="imgSrc"
@@ -42,7 +42,7 @@
     </v-slide-y-transition>
     <v-slide-y-transition>
       <div
-        v-if="weather"
+        v-if="weather && !serious"
         class="img-caption"
       >
         Image from Giphy
@@ -57,7 +57,7 @@ import helperMethods from './helpers/methods';
 
 export default {
   name: 'CurrentForecast',
-  props: ['loading', 'weather', 'metric', 'gif', 'isDay'],
+  props: ['loading', 'weather', 'metric', 'gif', 'isDay', 'serious'],
   data() {
     return {
       loadingGif,
