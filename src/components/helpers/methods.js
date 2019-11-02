@@ -3,11 +3,6 @@ const showTemp = (data, metric) => {
   return Math.round(temp);
 };
 
-const showWind = (data, metric) => {
-  const wind = (metric) ? data : data / 1.609;
-  return Math.round(wind);
-};
-
 const showVol = (data, metric) => {
   const vol = Math.round(data * 10) / 10;
   return (metric) ? `${vol}mm` : `${vol * 4}pt`;
@@ -58,6 +53,16 @@ const showRain = (rain, snow, metric) => {
   return `${showVol(vol, metric)} ${name}`;
 };
 
+const showWind = (wind, metric) => {
+  const spd = metric ? wind : wind * 0.621371;
+  return Math.round(spd) + (metric ? 'km/h' : 'mi/h');
+};
+
+const showDir = (windDeg) => {
+  const dirs = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest', 'North'];
+  return dirs[Math.round(windDeg / 45)];
+};
+
 const dayNight = (data, offset) => {
   const hour = showHr(data, offset);
   return (hour >= 4 && hour < 17) ? 'day' : 'night';
@@ -71,5 +76,6 @@ export default {
   showHr,
   showTimePeriod,
   showRain,
+  showDir,
   dayNight,
 };

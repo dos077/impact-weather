@@ -103,8 +103,9 @@ export default {
       if (temp > 15) color = '#72a951';
       if (temp >= 25) color = '#f28b00';
       if (temp >= 35) color = '#ed1c24';
+      const hstyle = this.serious ? '' : 'height: 512px;';
       const baseSt = 'background-image: linear-gradient(to bottom, ';
-      return `${baseSt}${color}, rgba(0, 0, 0, 0))`;
+      return `${hstyle}${baseSt}${color}, rgba(0, 0, 0, 0))`;
     },
   },
   methods: {
@@ -163,7 +164,8 @@ export default {
     position: relative;
     width: 100%;
     height: 168px;
-    overflow:hidden;
+    z-index: 0;
+    overflow: visible;
     @include breakPoint(720) {
       height: 108px;
     }

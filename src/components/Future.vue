@@ -15,8 +15,16 @@
           <span class="cold">{{ showTemp(period.low, metric) }}</span>
         </div>
         <span class="condition">{{ showCondition(period.desc) }}</span>
-        <span v-if="period.rain > 0 || period.snow > 0" class="rain">
+        <span v-if="period.rain > 0 || period.snow > 0" class="rain smaller">
           {{ showRain(period.rain, period.snow, metric) }}
+        </span>
+        <div style="clear:both;"></div>
+        <span class="hum" v-if="serious">
+          {{ period.hum }}%
+        </span>
+        <span v-if="period.wind && serious" class="wind">
+          <span class="dir smaller">{{ showDir(period.windDeg) }}</span>
+          {{ showWind(period.wind, metric) }}
         </span>
       </div>
     </v-slide-y-transition>
@@ -102,11 +110,29 @@ export default {
     .rain {
       margin-top: 4px;
       margin: 0 4px;
-      font-size: 20px;
       @include medium() {
         margin-top: 4px;
         float: right;
       }
+    }
+    .wind {
+      float: right;
+      width: auto;
+      @include medium() {
+        text-align: right;
+      }
+    }
+    .hum {
+      display: inline-block;
+      width: auto;
+      text-align: left;
+      @include medium() {
+        width: 50%;
+        padding-left: 148px;
+      }
+    }
+    .smaller {
+      font-size: 20px;
     }
   }
 </style>

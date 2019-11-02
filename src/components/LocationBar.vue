@@ -16,7 +16,12 @@
       >
         <i class="material-icons">search</i>
       </v-btn>
-      <span>{{ (current) ? current.city : 'Click to Search' }}</span>
+      <span>
+        {{ (current) ? current.city : 'Click to Search' }}
+        <span class="country">
+          {{ current ? current.country : '' }}
+        </span>
+      </span>
     </div>
     <div class="time">
       <span>{{ date }}</span>
@@ -25,17 +30,19 @@
 </template>
 
 <script>
+import dateHelp from './helpers/dateStr';
+
 export default {
   name: 'LocationBar',
   props: ['searching', 'current', 'future', 'isDay'],
   computed: {
     date() {
       if (!this.current || !this.future) return '';
-      const mons = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dev'.split(' ');
+      const { mons, date2st } = dateHelp;
       const utc = new Date(this.current.time);
       const adjTime = new Date(utc.getTime() + (this.future.timezone * 1000));
       const month = mons[adjTime.getUTCMonth()];
-      const date = adjTime.getUTCDate();
+      const date = date2st(adjTime.getUTCDate());
       const hour = adjTime.getUTCHours();
       const min = adjTime.getUTCMinutes();
       return `${month} ${date}, ${hour}:${min}`;
@@ -69,6 +76,10 @@ export default {
       span {
         margin-top: 4px;
         @include medium() { margin-left: 8px; }
+      }
+      .country {
+        display: none;
+        @include medium() { display: inline-block; }
       }
     }
     .time {

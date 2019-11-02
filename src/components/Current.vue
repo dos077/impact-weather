@@ -26,6 +26,13 @@
           </span>
         </div>
         <div style="height: 0; clear: both"></div>
+        <span v-if="serious" class="hum">
+          {{ weather.hum }}% <span class="smaller">humidity</span>
+        </span>
+        <span v-if="serious" class="wind">
+          <span class="dir smaller">{{ showDir(weather.windDeg) }}</span>
+          {{ showWind(weather.wind, metric) }}
+        </span>
       </div>
     </v-slide-y-transition>
     <v-slide-y-transition>
@@ -95,6 +102,26 @@ export default {
     margin: 16px auto 24px;
     font-size: 28px;
     line-height: 28px;
+    background-color: rgba(0, 0, 0, 0);
+    .wind {
+      float: right;
+      width: auto;
+      @include medium() {
+        text-align: right;
+      }
+    }
+    .hum {
+      display: inline-block;
+      width: auto;
+      text-align: left;
+      @include medium() {
+        width: 50%;
+        padding-left: 178px;
+      }
+    }
+    .smaller {
+      font-size: 20px;
+    }
   }
   .stats {
     width: 100%;
