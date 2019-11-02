@@ -58,7 +58,7 @@
         <v-btn
           text
           top
-          class="text-none toggle"
+          class="text-none toggle body"
           height=56
           width=40
           style="font-size: 28px; border-radius: 0;"
@@ -70,7 +70,7 @@
         <v-btn
           text
           top
-          class="text-none"
+          class="text-none body"
           height=56
           width=176
           style="font-size: 28px; float: right; letter-spacing: 0px;  border-radius: 0;"

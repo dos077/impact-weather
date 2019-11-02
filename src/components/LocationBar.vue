@@ -38,14 +38,13 @@ export default {
   computed: {
     date() {
       if (!this.current || !this.future) return '';
-      const { mons, date2st } = dateHelp;
+      const { mons, date2st, showHrMin } = dateHelp;
       const utc = new Date(this.current.time);
       const adjTime = new Date(utc.getTime() + (this.future.timezone * 1000));
       const month = mons[adjTime.getUTCMonth()];
       const date = date2st(adjTime.getUTCDate());
-      const hour = adjTime.getUTCHours();
-      const min = adjTime.getUTCMinutes();
-      return `${month} ${date}, ${hour}:${min}`;
+      const timeStr = showHrMin(adjTime);
+      return `${month} ${date}, ${timeStr}`;
     },
     btnColor() {
       return (this.isDay) ? '#373832' : '#dbd5d2';

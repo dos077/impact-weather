@@ -10,4 +10,11 @@ const date2st = (date) => {
   return `${date}${subffix}`;
 };
 
-export default { mons, date2st };
+const showHrMin = (time) => {
+  const hour = time.getUTCHours();
+  const min = time.getUTCMinutes();
+  const minStr = (min > 9) ? min : `0${min}`;
+  return `${hour}:${minStr}`;
+};
+
+export default { mons, date2st, showHrMin };
