@@ -36,16 +36,18 @@
       </div>
     </v-slide-y-transition>
     <v-slide-y-transition>
-      <v-img
-        v-if="weather && !serious"
-        width=100%
-        height=340
-        :src="imgSrc"
-        :placeholder="loadingGif.url"
-        style="border: 4px solid"
-        :class="{ 'day': isDay, 'night': !isDay }"
-      >
-      </v-img>
+      <a :href="imgSrc">
+        <v-img
+          v-if="weather && !serious"
+          width=100%
+          height=340
+          :src="imgSrc"
+          :placeholder="loadingGif.url"
+          style="border: 4px solid"
+          :class="{ 'day': isDay, 'night': !isDay }"
+        >
+        </v-img>
+      </a>
     </v-slide-y-transition>
     <v-slide-y-transition>
       <div

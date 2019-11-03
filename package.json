@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "impact_weather",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,13 +9,15 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
+    "autoprefixer": "^9.7.1",
+    "core-js": "^3.3.6",
     "dotenv": "^8.1.0",
     "node-fetch": "^2.6.0",
     "vue": "^2.6.10",
     "vuetify": "^2.0.0"
   },
   "devDependencies": {
+    "@vue/babel-preset-app": "^4.0.5",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",

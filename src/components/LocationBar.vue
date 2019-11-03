@@ -83,7 +83,7 @@ export default {
     }
     .time {
       float: right;
-      width: 64px;
+      width: 72px;
       font-size: 20px;
       line-height: 24px;
       text-align: right;
