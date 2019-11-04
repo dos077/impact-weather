@@ -65,7 +65,7 @@ const showDir = (windDeg) => {
 
 const dayNight = (data, offset) => {
   const hour = showHr(data, offset);
-  return (hour >= 4 && hour < 17) ? 'day' : 'night';
+  return (hour >= 3 && hour < 15) ? 'day' : 'night';
 };
 
 export default {
