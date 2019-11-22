@@ -99,14 +99,14 @@ export default {
     .time {
       position: absolute;
       right: 0;
-      bottom: 4px;
+      bottom: 8px;
       width: 88px;
       font-size: 20px;
       line-height: 24px;
       text-align: right;
       @include medium() {
-        bottom: 12px;
-        width: 176px;
+        bottom: 16px;
+        width: 208px;
         margin-top: 4px;
         font-size: 28px;
         line-height: 44px;
