@@ -17,10 +17,12 @@
         <i class="material-icons">search</i>
       </v-btn>
       <span>
-        {{ (current) ? current.city : 'Click to Search' }}
-        <span class="country">
-          {{ current ? current.country : '' }}
-        </span>
+        <div class="city">
+          {{ (current) ? current.city : 'Click to Search' }}
+          <span class="country">
+            {{ current ? current.country : '' }}
+          </span>
+        </div>
       </span>
     </div>
     <div class="time">
@@ -73,8 +75,21 @@ export default {
       float: left;
       height: 44px;
       span {
-        margin-top: 4px;
+        display: inline-block;
+        position: relative;
+        overflow: visible;
         @include medium() { margin-left: 8px; }
+      }
+      .city {
+        display: block;
+        position: absolute;
+        width: 208px;
+        left: 4px;
+        bottom: -4px;
+        line-height: 28px;
+        @include medium() {
+          width: 480px;
+        }
       }
       .country {
         display: none;
@@ -82,12 +97,15 @@ export default {
       }
     }
     .time {
-      float: right;
-      width: 72px;
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      width: 88px;
       font-size: 20px;
       line-height: 24px;
       text-align: right;
       @include medium() {
+        bottom: 12px;
         width: 176px;
         margin-top: 4px;
         font-size: 28px;
