@@ -1,4 +1,4 @@
-const mons = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dev'.split(' ');
+const mons = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');
 
 const date2st = (date) => {
   const single = date % 10;
