@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.ee421eb54fce8a28e7f80df832d4eb61.js"
+  "/impact-weather/precache-manifest.6c02245d1306d8b284578ba615081ae9.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "impact_weather"});
