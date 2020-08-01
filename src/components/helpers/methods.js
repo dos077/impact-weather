@@ -34,6 +34,12 @@ const showHr = (data, offset) => {
   return adjTime.getUTCHours();
 };
 
+const showDay = (data, offset) => {
+  const utc = new Date(data);
+  const adjTime = new Date(utc.getTime() + (offset * 1000));
+  return adjTime.getDay();
+};
+
 const showTimePeriod = (data, offset, serious) => {
   const hour = showHr(data, offset);
   if (hour === 0) return 'Midnight';
@@ -44,6 +50,16 @@ const showTimePeriod = (data, offset, serious) => {
     index += 1;
   }
   return names[index];
+};
+
+const weekDays = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split(' ');
+
+const showDayBreak = (data, offset, serious, isDay) => {
+  if (!serious) return false;
+  const hour = showHr(data, offset);
+  if (!isDay && hour > 0 && hour < 4) return weekDays[showDay(data, offset)];
+  if (isDay && hour >= 4 && hour < 7) return weekDays[showDay(data, offset)];
+  return false;
 };
 
 const showRain = (rain, snow, metric) => {
@@ -75,6 +91,7 @@ export default {
   showCondition,
   showHr,
   showTimePeriod,
+  showDayBreak,
   showRain,
   showDir,
   dayNight,

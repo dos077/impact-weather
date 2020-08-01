@@ -55,6 +55,7 @@
         :weather="future"
         :metric="metric"
         :serious="serious"
+        :isDay="isDay"
       ></future-forecast>
     </v-content>
   </v-app>
